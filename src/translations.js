@@ -213,6 +213,9 @@ const repoCardLocales = {
     tr: "Arşiv",
     pl: "Zarchiwizowano",
   },
+  "repocard.private": {
+    en: "Private",
+  }
 };
 
 const langCardLocales = {

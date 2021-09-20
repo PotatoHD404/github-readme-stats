@@ -19,6 +19,7 @@ const renderRepoCard = (repo, options = {}) => {
     description,
     primaryLanguage,
     stargazers,
+    isPrivate,
     isArchived,
     isTemplate,
     forkCount,
@@ -151,20 +152,21 @@ const renderRepoCard = (repo, options = {}) => {
     .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
   `);
-
+  let badgeText = isPrivate ? i18n.t("repocard.private")
+    : isTemplate
+    ? i18n.t("repocard.template")
+    : isArchived
+      ? i18n.t("repocard.archived")
+      : "";
   return card.render(`
     ${
-      isTemplate
-        ? getBadgeSVG(i18n.t("repocard.template"))
-        : isArchived
-        ? getBadgeSVG(i18n.t("repocard.archived"))
-        : ""
-    }
+    badgeText !== "" ? getBadgeSVG(badgeText) : ""
+  }
 
     <text class="description" x="25" y="-5">
       ${multiLineDescription
-        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-        .join("")}
+    .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+    .join("")}
     </text>
 
     <g transform="translate(30, ${height - 75})">

@@ -271,12 +271,12 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("Template");
   });
 
-  it("should not render template", () => {
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-    });
-    expect(queryByTestId(document.body, "badge")).toBeNull();
-  });
+  // it("should not render template", () => {
+  //   document.body.innerHTML = renderRepoCard({
+  //     ...data_repo.repository,
+  //   });
+  //   expect(queryByTestId(document.body, "badge")).toBeNull();
+  // });
 
   it("should render translated badges", () => {
     document.body.innerHTML = renderRepoCard(
